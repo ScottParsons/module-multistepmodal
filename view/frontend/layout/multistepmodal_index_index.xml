@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * @package    SussexDev_MultiStepModal
+ * @copyright  Copyright (c) 2018 Scott Parsons
+ * @license    https://github.com/ScottParsons/module-multistepmodal/blob/master/LICENSE.md
+ * @version    1.0.0
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="multistepmodal" />
+        </referenceContainer>
+    </body>
+</page>

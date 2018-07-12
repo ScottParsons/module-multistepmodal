@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * @package    SussexDev_MultiStepModal
+ * @copyright  Copyright (c) 2018 Scott Parsons
+ * @license    https://github.com/ScottParsons/module-multistepmodal/blob/master/LICENSE.md
+ * @version    1.0.0
+ */
+ -->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">multistepmodal.multistepmodal_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Multi-Step Modal</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>multistepmodal</namespace>
+        <dataScope>data</dataScope>
+    </settings>
+    <dataSource name="multistepmodal_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <dataProvider class="SussexDev\MultiStepModal\Ui\DataProvider\DataProvider" name="multistepmodal_data_source"/>
+    </dataSource>
+    <modal name="multistepmodal_modal" component="SussexDev_MultiStepModal/js/modal/component">
+        <settings>
+            <onCancel>actionCancel</onCancel>
+            <state>true</state>
+            <options>
+                <option name="modalClass" xsi:type="string">multistepmodal-modal</option>
+                <option name="title" xsi:type="string" translate="true">Step 1</option>
+                <option name="type" xsi:type="string">popup</option>
+                <option name="responsive" xsi:type="boolean">true</option>
+                <option name="innerScroll" xsi:type="boolean">true</option>
+                <option name="autoOpen" xsi:type="boolean">true</option>
+            </options>
+        </settings>
+        <fieldset name="multistepmodal_fieldset">
+            <settings>
+                <label/>
+            </settings>
+            <container name="multistepmodal_text" template="ui/form/components/complex">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                        <item name="additionalClasses" xsi:type="string">multistepmodal-text</item>
+                        <item name="text" xsi:type="string" translate="true">
+                            <![CDATA[<p>Step 1 content</p>]]>
+                        </item>
+                    </item>
+                </argument>
+            </container>
+            <container name="multistepmodal_buttons">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                    </item>
+                </argument>
+                <button name="multistepmodal_button_next" displayArea="actions-secondary">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="buttonClasses" xsi:type="string">multistepmodal-button-next</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_modal</item>
+                                    <item name="actionName" xsi:type="string">closeModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_second_modal</item>
+                                    <item name="actionName" xsi:type="string">openModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <displayAsLink>true</displayAsLink>
+                        <title><![CDATA[Next >]]></title>
+                    </settings>
+                </button>
+            </container>
+        </fieldset>
+    </modal>
+    <modal name="multistepmodal_second_modal" component="SussexDev_MultiStepModal/js/modal/component">
+        <settings>
+            <onCancel>actionCancel</onCancel>
+            <options>
+                <option name="modalClass" xsi:type="string">multistepmodal-second-modal</option>
+                <option name="title" xsi:type="string" translate="true">Step 2</option>
+                <option name="type" xsi:type="string">popup</option>
+                <option name="responsive" xsi:type="boolean">true</option>
+                <option name="innerScroll" xsi:type="boolean">true</option>
+                <option name="autoOpen" xsi:type="boolean">false</option>
+            </options>
+        </settings>
+        <fieldset name="multistepmodal_fieldset">
+            <settings>
+                <label/>
+            </settings>
+            <container name="multistepmodal_text" template="ui/form/components/complex">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                        <item name="additionalClasses" xsi:type="string">multistepmodal-text</item>
+                        <item name="text" xsi:type="string" translate="true">
+                            <![CDATA[<p>Step 2 content</p>]]>
+                        </item>
+                    </item>
+                </argument>
+            </container>
+            <container name="multistepmodal_buttons">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                    </item>
+                </argument>
+                <button name="multistepmodal_button_back" displayArea="actions-secondary">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="buttonClasses" xsi:type="string">multistepmodal-button-back</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_second_modal</item>
+                                    <item name="actionName" xsi:type="string">closeModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_modal</item>
+                                    <item name="actionName" xsi:type="string">openModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <displayAsLink>true</displayAsLink>
+                        <title><![CDATA[< Back]]></title>
+                    </settings>
+                </button>
+                <button name="multistepmodal_button_next" displayArea="actions-secondary">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="buttonClasses" xsi:type="string">multistepmodal-button-next</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_second_modal</item>
+                                    <item name="actionName" xsi:type="string">closeModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_third_modal</item>
+                                    <item name="actionName" xsi:type="string">openModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <displayAsLink>true</displayAsLink>
+                        <title><![CDATA[Next >]]></title>
+                    </settings>
+                </button>
+            </container>
+        </fieldset>
+    </modal>
+    <modal name="multistepmodal_third_modal" component="SussexDev_MultiStepModal/js/modal/component">
+        <settings>
+            <onCancel>actionCancel</onCancel>
+            <options>
+                <option name="modalClass" xsi:type="string">multistepmodal-third-modal</option>
+                <option name="title" xsi:type="string" translate="true">Step 3</option>
+                <option name="type" xsi:type="string">popup</option>
+                <option name="responsive" xsi:type="boolean">true</option>
+                <option name="innerScroll" xsi:type="boolean">true</option>
+                <option name="autoOpen" xsi:type="boolean">false</option>
+            </options>
+        </settings>
+        <fieldset name="multistepmodal_fieldset">
+            <settings>
+                <label/>
+            </settings>
+            <container name="multistepmodal_text" template="ui/form/components/complex">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                        <item name="additionalClasses" xsi:type="string">multistepmodal-text</item>
+                        <item name="text" xsi:type="string" translate="true">
+                            <![CDATA[<p>Step 3 content]]>
+                        </item>
+                    </item>
+                </argument>
+            </container>
+            <container name="multistepmodal_buttons">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string"/>
+                    </item>
+                </argument>
+                <button name="multistepmodal_button_back" displayArea="actions-secondary">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="buttonClasses" xsi:type="string">multistepmodal-button-back</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_third_modal</item>
+                                    <item name="actionName" xsi:type="string">closeModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_second_modal</item>
+                                    <item name="actionName" xsi:type="string">openModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <displayAsLink>true</displayAsLink>
+                        <title><![CDATA[< Back]]></title>
+                    </settings>
+                </button>
+                <button name="multistepmodal_button_next" displayArea="actions-secondary">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="buttonClasses" xsi:type="string">multistepmodal-button-next</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">ns = ${ $.ns }, index = multistepmodal_third_modal</item>
+                                    <item name="actionName" xsi:type="string">closeMultiStepModal</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <displayAsLink>true</displayAsLink>
+                        <title>Done</title>
+                    </settings>
+                </button>
+            </container>
+        </fieldset>
+    </modal>
+</form>
